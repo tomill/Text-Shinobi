@@ -121,11 +121,11 @@ our $map = [
     { char => 'ん', code => "\x{4EBB}\x{7D2B}", flag => DUO |  UTF8MB3 | JIS | Y2016 },
 ];
 
+my $encode = {};
+my $decode = {};
 my $decode_re = join '|', map { $_->{code} } reverse @$map;
    $decode_re = qr/($decode_re)/;
 
-my $encode = {};
-my $decode = {};
 for my $v (@$map) {
     my $list = $encode->{ $v->{char} } ||= [];
     push @$list, $v;
@@ -188,19 +188,83 @@ __END__
 
 =head1 NAME
 
-Text::Shinobi - It's new $module
+Text::Shinobi - 忍びいろは (Ninja Alphabet) encoding
 
 =head1 SYNOPSIS
 
-    use Text::Shinobi;
+    use Text::Shinobi qw/shinobi/;
+
+    print shinobi('しのび'); # => 𨊂浾⽕紫゙
 
 =head1 DESCRIPTION
 
-Text::Shinobi is ...
+"Shinobi Iroha" is a method to encrypt message that Ninja used.
+This substitution cipher map the Japanese Kana characters to Kanji.
+
+Text::Shinobi encoding table is based on 萬川集海 the Ninja technique encyclopedia; compiled in 1676.
+The exact charactor table has not been revealed in the book (as strictly confidential).
+This module adopted table "generally known" in current Ninjalogy.
+
+=head1 METHODS
+
+=head2 encode()
+
+    Text::Shinobi->encode('あいう！'); # 𣘸栬𡋽！
+
+Returns encrypted input text (unicode string).
+Only Hiragana and Katakana are converted, other charactors are left.
+
+=head3 $Text::Shinobi::ENCODE
+
+By default, C<encode()> select a Kanji charactor following rules:
+
+=over 4
+
+=item 1.
+
+use single charactor if same shape unicode exists.
+
+=item 2.
+
+viewable in a common (in 2016) browser fonts.
+
+=back
+
+So this module's default might change in the future.
+
+You can change encode option by C<$Text::Shinobi::ENCODE> class variable with below constants.
+
+    # DUO: double charactor only
+    local $Text::Shinobi::ENCODE = Text::Shinobi::DUO;
+    Text::Shinobi->encode('あいう'); # => ⽊黒⽊⾊⼟⾚
+
+    # UTF8MB3: exclude 4 bytes code as utf-8
+    local $Text::Shinobi::ENCODE = Text::Shinobi::UTF8MB3;
+    Text::Shinobi->encode('あいう'); # => ⽊黒栬⼟⾚
+
+=head2 decode()
+
+    Text::Shinobi->decode('𣘸栬𡋽？'); # あいう？
+
+Returns text to try decode input text (unicode string).
+
+=head1 EXPORTS
+
+No exports by default.
+
+=head2 shinobi()
+
+    use Text::Shinobi qw/shinobi/;
+
+    shinobi('...');
+
+Shortcut to C<< Text::Shinobi->encode(...) >>.
+
+=head1 USAGE
 
 =head1 AUTHOR
 
-Naoki Tomita E<lt>tomita@cpan.orgE<gt>
+Naoki Tomita aka "Tomimaru" E<lt>tomita@cpan.orgE<gt>
 
 =head1 LICENSE
 

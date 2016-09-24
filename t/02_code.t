@@ -30,6 +30,9 @@ subtest 'default' => sub {
 
     is(Text::Shinobi->encode($iroha), $encoded, 'encode()');
     is(Text::Shinobi->decode($encoded), $iroha, 'decode()');
+    
+    is(Text::Shinobi->encode('あいう！'), '𣘸栬𡋽！', 'pod example');
+    is(Text::Shinobi->decode('𣘸栬𡋽？'), 'あいう？', 'pod example');
 };
 
 subtest 'DUO' => sub {
@@ -47,6 +50,8 @@ subtest 'DUO' => sub {
 
     is(Text::Shinobi->encode($iroha), $encoded, 'encode()');
     is(Text::Shinobi->decode($encoded), $iroha, 'decode()');
+    
+    is(Text::Shinobi->encode('あいう'), '⽊黒⽊⾊⼟⾚', 'pod example');
 };
 
 subtest 'UTF8MB3' => sub {
@@ -64,6 +69,8 @@ subtest 'UTF8MB3' => sub {
 
     is(Text::Shinobi->encode($iroha), $encoded, 'encode()');
     is(Text::Shinobi->decode($encoded), $iroha, 'decode()');
+    
+    is(Text::Shinobi->encode('あいう'), '⽊黒栬⼟⾚', 'pod example');
 };
 
 done_testing();
