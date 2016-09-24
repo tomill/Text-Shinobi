@@ -11,11 +11,13 @@ Text::Shinobi - 忍びいろは (Ninja Alphabet) encoding
 # DESCRIPTION
 
 "Shinobi Iroha" is a method to encrypt message that Ninja used.
-This substitution cipher map the Japanese Kana characters to Kanji.
+This substitution cipher maps Japanese Kana characters to Kanji.
 
 Text::Shinobi encoding table is based on 萬川集海 the Ninja technique encyclopedia; compiled in 1676.
 The exact character table has not been revealed in the book (as strictly confidential).
 This module adopted table "generally known" in current Ninjalogy.
+
+<img src="https://shinobi.life/shinobi-iroha.jpg">
 
 # METHODS
 
@@ -24,14 +26,14 @@ This module adopted table "generally known" in current Ninjalogy.
     Text::Shinobi->encode('あいう！'); # 𣘸栬𡋽！
 
 Returns encrypted input text (unicode string).
-Only Hiragana and Katakana are converted, other characters are left.
+Only Hiragana and Katakana are converts, other characters are left.
 
 ### $Text::Shinobi::ENCODE
 
 By default, `encode()` select a Kanji character following rules:
 
 1. use single character if same shape unicode exists.
-2. viewable in a common (in 2016) browser fonts.
+2. viewable in major browser version. (device fonts supported)
 
 So this module's default might change in the future.
 
@@ -70,6 +72,13 @@ Romaji to shinobi iroha: use [Lingua::JA::Kana](http://search.cpan.org/perldoc?L
     use Lingua::JA::Kana;
 
     shinobi(romaji2hiragana('ninja!'));
+
+# REFERENCES
+
+- 中島篤巳 (2015) 完本 万川集海
+<https://www.amazon.co.jp/dp/4336057672/>
+- うみほたる Nishiki-teki+01 Shinobi Iroha 
+[http://d.hatena.ne.jp/Umihotaru/20111216/1324033352](http://d.hatena.ne.jp/Umihotaru/20111216/1324033352)
 
 # AUTHOR
 

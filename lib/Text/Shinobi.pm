@@ -202,11 +202,17 @@ Text::Shinobi - 忍びいろは (Ninja Alphabet) encoding
 =head1 DESCRIPTION
 
 "Shinobi Iroha" is a method to encrypt message that Ninja used.
-This substitution cipher map the Japanese Kana characters to Kanji.
+This substitution cipher maps Japanese Kana characters to Kanji.
 
 Text::Shinobi encoding table is based on 萬川集海 the Ninja technique encyclopedia; compiled in 1676.
 The exact character table has not been revealed in the book (as strictly confidential).
 This module adopted table "generally known" in current Ninjalogy.
+
+=begin html
+
+<img src="https://shinobi.life/shinobi-iroha.jpg">
+
+=end html
 
 =head1 METHODS
 
@@ -215,13 +221,13 @@ This module adopted table "generally known" in current Ninjalogy.
     Text::Shinobi->encode('あいう！'); # 𣘸栬𡋽！
 
 Returns encrypted input text (unicode string).
-Only Hiragana and Katakana are converted, other characters are left.
+Only Hiragana and Katakana are converts, other characters are left.
 
 =head3 $Text::Shinobi::ENCODE
 
 By default, C<encode()> select a Kanji character following rules:
 
-=over 4
+=over
 
 =item 1.
 
@@ -229,7 +235,7 @@ use single character if same shape unicode exists.
 
 =item 2.
 
-viewable in a common (in 2016) browser fonts.
+viewable in major browser version. (device fonts supported)
 
 =back
 
@@ -271,6 +277,22 @@ Romaji to shinobi iroha: use L<Lingua::JA::Kana>;
 
     shinobi(romaji2hiragana('ninja!'));
 
+=head1 REFERENCES
+
+=over
+
+=item *
+
+中島篤巳 (2015) 完本 万川集海
+<https://www.amazon.co.jp/dp/4336057672/>
+
+=item *
+
+うみほたる Nishiki-teki+01 Shinobi Iroha 
+L<http://d.hatena.ne.jp/Umihotaru/20111216/1324033352>
+
+=back
+
 =head1 AUTHOR
 
 Naoki Tomita aka "Tomimaru" E<lt>tomita@cpan.orgE<gt>
@@ -282,6 +304,6 @@ Copyright (C) Naoki Tomita.
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-=for stopwords unicode shinobi iroha
+=for stopwords unicode shinobi iroha Nishiki-teki+01
 
 =cut

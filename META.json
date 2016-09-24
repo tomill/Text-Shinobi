@@ -66,8 +66,5 @@
          "web" : "https://github.com/tomill/Text-Shinobi"
       }
    },
-   "version" : "0.01",
-   "x_contributors" : [
-      "Naoki Tomita <n.tomita@gmail.com>"
-   ]
+   "version" : "0.01"
 }
