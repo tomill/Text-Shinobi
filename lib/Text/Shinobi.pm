@@ -6,7 +6,7 @@ use warnings;
 our $VERSION = "0.01";
 
 use Exporter 'import';
-use Unicode::Normalize qw/NFD/;
+use Unicode::Normalize qw/NFD NFC/;
 use Lingua::JA::Regular::Unicode;
 
 our @EXPORT_OK = qw/shinobi/;
@@ -149,7 +149,7 @@ sub _encode {
 sub normalize {
     my $text = shift // "";
     
-    # decomposition 濁点s
+    # decomposition for 濁点s
     $text =~ s/(\p{InHiragana}|\p{InKatakana})/NFD($1)/ge;
     
     # katakana to hiragana
@@ -165,6 +165,7 @@ sub normalize {
 sub encode {
     my $class = shift;
     my $text = shift // "";
+    
     $text = normalize($text);
     $text =~ s{(.)}{_encode($1)}ge;
     $text;
@@ -173,7 +174,9 @@ sub encode {
 sub decode {
     my $class = shift;
     my $text = shift // "";
+    
     $text =~ s/$decode_re/$decode->{$1}/ge;
+    $text =~ s/(\p{InHiragana}+)/NFC($1)/ge;
     $text;
 }
 
@@ -202,7 +205,7 @@ Text::Shinobi - 忍びいろは (Ninja Alphabet) encoding
 This substitution cipher map the Japanese Kana characters to Kanji.
 
 Text::Shinobi encoding table is based on 萬川集海 the Ninja technique encyclopedia; compiled in 1676.
-The exact charactor table has not been revealed in the book (as strictly confidential).
+The exact character table has not been revealed in the book (as strictly confidential).
 This module adopted table "generally known" in current Ninjalogy.
 
 =head1 METHODS
@@ -212,17 +215,17 @@ This module adopted table "generally known" in current Ninjalogy.
     Text::Shinobi->encode('あいう！'); # 𣘸栬𡋽！
 
 Returns encrypted input text (unicode string).
-Only Hiragana and Katakana are converted, other charactors are left.
+Only Hiragana and Katakana are converted, other characters are left.
 
 =head3 $Text::Shinobi::ENCODE
 
-By default, C<encode()> select a Kanji charactor following rules:
+By default, C<encode()> select a Kanji character following rules:
 
 =over 4
 
 =item 1.
 
-use single charactor if same shape unicode exists.
+use single character if same shape unicode exists.
 
 =item 2.
 
@@ -234,7 +237,7 @@ So this module's default might change in the future.
 
 You can change encode option by C<$Text::Shinobi::ENCODE> class variable with below constants.
 
-    # DUO: double charactor only
+    # DUO: double character only
     local $Text::Shinobi::ENCODE = Text::Shinobi::DUO;
     Text::Shinobi->encode('あいう'); # => ⽊黒⽊⾊⼟⾚
 
@@ -260,7 +263,13 @@ No exports by default.
 
 Shortcut to C<< Text::Shinobi->encode(...) >>.
 
-=head1 USAGE
+=head1 ADVANCED USAGE
+
+Romaji to shinobi iroha: use L<Lingua::JA::Kana>;
+
+    use Lingua::JA::Kana;
+
+    shinobi(romaji2hiragana('ninja!'));
 
 =head1 AUTHOR
 
@@ -273,6 +282,6 @@ Copyright (C) Naoki Tomita.
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-=for stopwords shinobi
+=for stopwords unicode shinobi iroha
 
 =cut
