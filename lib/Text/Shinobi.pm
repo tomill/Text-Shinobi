@@ -284,7 +284,7 @@ Romaji to shinobi iroha: use L<Lingua::JA::Kana>;
 =item *
 
 中島篤巳 (2015) 完本 万川集海
-<https://www.amazon.co.jp/dp/4336057672/>
+<http://www.amazon.co.jp/dp/4336057672/>
 
 =item *
 
@@ -292,6 +292,12 @@ Romaji to shinobi iroha: use L<Lingua::JA::Kana>;
 L<http://d.hatena.ne.jp/Umihotaru/20111216/1324033352>
 
 =back
+
+=head1 SEE ALSO
+
+L<http://shinobi.life/> - You can test this module here.
+
+L<http://e8y.net/2016/09/27/shinobi-iroha/>
 
 =head1 AUTHOR
 

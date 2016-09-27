@@ -76,9 +76,15 @@ Romaji to shinobi iroha: use [Lingua::JA::Kana](http://search.cpan.org/perldoc?L
 # REFERENCES
 
 - 中島篤巳 (2015) 完本 万川集海
-<https://www.amazon.co.jp/dp/4336057672/>
+<http://www.amazon.co.jp/dp/4336057672/>
 - うみほたる Nishiki-teki+01 Shinobi Iroha 
 [http://d.hatena.ne.jp/Umihotaru/20111216/1324033352](http://d.hatena.ne.jp/Umihotaru/20111216/1324033352)
+
+# SEE ALSO
+
+[http://shinobi.life/](http://shinobi.life/) - You can test this module here.
+
+[http://e8y.net/2016/09/27/shinobi-iroha/](http://e8y.net/2016/09/27/shinobi-iroha/)
 
 # AUTHOR
 
