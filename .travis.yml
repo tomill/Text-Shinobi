@@ -10,4 +10,5 @@ perl:
   - "5.18"
   - "5.20"
   - "5.22"
-
+notifications:
+  slack: shinobi-life:gpA693YsIjlT9wi4owGFUjJC
