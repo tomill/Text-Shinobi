@@ -1,4 +1,7 @@
 language: perl
+branches:
+  only:
+    - master
 sudo: false
 perl:
   - "5.12"
