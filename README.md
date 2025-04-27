@@ -17,7 +17,7 @@ Text::Shinobi encoding table is based on 萬川集海 the Ninja technique encycl
 The exact character table has not been revealed in the book (as strictly confidential).
 This module adopted table "generally known" in current Ninjalogy.
 
-<img src="https://shinobi.life/shinobi-iroha.jpg">
+<img src="https://e8y.net/images/2016/shinobi-iroha.jpg">
 
 # METHODS
 
