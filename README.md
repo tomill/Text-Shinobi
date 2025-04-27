@@ -82,8 +82,6 @@ Romaji to shinobi iroha: use [Lingua::JA::Kana](http://search.cpan.org/perldoc?L
 
 # SEE ALSO
 
-[http://shinobi.life/](http://shinobi.life/) - You can test this module here.
-
 [http://e8y.net/2016/09/27/shinobi-iroha/](http://e8y.net/2016/09/27/shinobi-iroha/)
 
 # AUTHOR
